@@ -22,7 +22,6 @@ spl_autoload_register(function ($class): void {
     if (file_exists($file)) {
         require_once $file;
     } else {
-        var_dump($file); // Output the file path for debugging
         throw new Exception("Class {$class} not found in src or tests directories.");
     }
 });

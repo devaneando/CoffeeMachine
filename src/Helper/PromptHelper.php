@@ -29,7 +29,7 @@ class PromptHelper
             "    Press \033[32ms\033[0m to add sugar.\n" .
             "    Press \033[32mm\033[0m to add milk.\n" .
             "    Press \033[32mg\033[0m to order the drink.\n" .
-            "    Press \033[32mc\033[0m to cancel.\n" .
+            "    Press \033[32mc\033[0m to cancel and get back your money.\n" .
             "\n" .
             "    \033[91m%s\033[0m\n",
             $this->renderDrinkName($drink),
@@ -50,6 +50,17 @@ class PromptHelper
         );
 
         echo $prompt;
+    }
+
+    public function cancelDrink(int $deposit): void
+    {
+        $prompt = "\n\033[34mThis is the CoffeeMachine©\033[0m\nYour order is cancelled.";
+        $prompt .= match ($deposit) {
+            0 => '',
+            1 => ' Please take back your money: 1 coin.',
+            default => " Please take back your money: $deposit coins.",
+        };
+        echo $prompt . "\n";
     }
 
     public function orderDrink(?DrinkInterface $drink): bool

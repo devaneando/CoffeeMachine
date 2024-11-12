@@ -24,6 +24,7 @@ abstract class AbstractDrinkTest
         $this->testGetMaxSugar();
         $this->testSetAndGetAmount();
         $this->testGetChange();
+        $this->testGetName();
         $this->testSetAndGetSugar();
         $this->testSetAndGetMilk();
         $this->testIsPaid();
