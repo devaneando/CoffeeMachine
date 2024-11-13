@@ -39,9 +39,11 @@ class CoffeeMachine
             }
 
             if ('g' === $char) {
-                if ($this->handleOrderDrink()) {
+                $error = null;
+                if ($this->handleOrderDrink($error)) {
                     return $this->manager->getDrink();
                 }
+                $this->manager->setError($error);
                 continue;
             }
 
@@ -57,10 +59,11 @@ class CoffeeMachine
         }
     }
 
-    private function handleOrderDrink(): bool
+    private function handleOrderDrink(?string &$error): bool
     {
-        if ($this->helper->orderDrink($this->manager->getDrink())) {
+        if ($this->helper->orderDrink($this->manager->getDrink(), $error)) {
             system('stty sane');
+
             return true;
         }
         return false;

@@ -27,6 +27,13 @@ To run the tests, execute:
 reset && ./runTests.php
 ```
 
+Ps.: If the commands above do not work, it's probably related to permissions.
+Just add a `php` before the script and it should work:
+
+```bash
+reset && php ./runTests.php
+```
+
 ## Challenges
 
 Initially, I wasn’t sure if `CoffeeMachine` was meant to act as a data transfer object (DTO) that would be processed by
@@ -39,7 +46,12 @@ minimal reliance on frameworks, I chose to implement it in vanilla PHP.
 For simplicity and speed, I opted for a command-line interface, reading single characters as if they were button presses
 on a physical machine, based on your specifications.
 
-Since this is a CLI application, there’s no need to return the actual `Coffee`, `Tea`, or `Chocolate` objects for
+In the same way, normally I would validate things like max values using validations for the models, but, since I don't
+want to use any library, I validated them with Exceptions
+
+The unit tests were made with a custom class.
+
+Since this is a CLI application, there’s no need to return the actual `Coffee`, `autoTea`, or `Chocolate` objects for
 display. However, to meet the requirements, `CoffeeMachine::getDrink()` does return these objects, and it outputs
 confirmation to the console.
 
@@ -53,6 +65,7 @@ pattern:
 * The logic is encapsulated in `manager\DrinkManager`.
 * `helper\PromptHelper` acts as a view helper, formatting outputs for the command line using `sprintf` to simulate
   templating.
+* I also added a basic autoload.php file to handle the namespaces.
 
 In this structure, `CoffeeMachine` serves as the entry point and controller, coordinating user actions and managing
 output through helper classes.

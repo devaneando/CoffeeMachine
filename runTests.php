@@ -8,13 +8,25 @@ use tests\model\CoffeeTest;
 use tests\model\TeaTest;
 
 $test = new ChocolateTest();
-$test->runTests();
+try {
+    $test->runTests();
+} catch (Exception $ex) {
+    echo "\033[91m {$ex->getMessage()} \033[0m\n";
+}
 echo("\n");
 
 $test = new CoffeeTest();
-$test->runTests();
+try {
+    $test->runTests();
+} catch (Exception $ex) {
+    echo "\033[91m {$ex->getMessage()} \033[0m\n";
+}
 echo("\n");
 
 $test = new TeaTest();
-$test->runTests();
+try {
+    $test->runTests();
+} catch (Exception $ex) {
+    echo "\033[91m {$ex->getMessage()} \033[0m\n";
+}
 echo("\n");

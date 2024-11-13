@@ -99,6 +99,11 @@ class DrinkManager
         return $this->error;
     }
 
+    public function setError(?string $error = null): ?string
+    {
+        return $this->error = $error;
+    }
+
     public function clearError(): void
     {
         $this->error = null;

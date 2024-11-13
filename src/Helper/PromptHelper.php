@@ -63,9 +63,17 @@ class PromptHelper
         echo $prompt . "\n";
     }
 
-    public function orderDrink(?DrinkInterface $drink): bool
+    public function orderDrink(?DrinkInterface $drink, ?string &$error): bool
     {
-        if (null === $drink || !$drink->isPaid()) {
+        if (null === $drink) {
+            $error = 'Choose drink first!';
+
+            return false;
+        }
+
+        if (!$drink->isPaid()) {
+            $error = 'Not enough coins!';
+
             return false;
         }
 
